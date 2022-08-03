@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Hello" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Button id="Button00" taborder="0" text="Hello World" left="35" top="66" width="290" height="98" onclick="Button00_onclick" cursor="pointer" borderRadius="15px" boxShadow="5" font="normal 600 15pt/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[// 변수 선언 방법
+var str1 = 'abc'; // script에서만 가능
+this.str2 = '123'; // Design, source, script 다 사용가능
+str3 = 'cba'; // 글로벌 영역
+
+
+console.log("Hello world");
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	str1 = '124';
+	this.str2 = 'abc';
+	
+	// 스코프 적용 방법
+	this.alert("Hello");
+	nexacro.getApplication().trace("🔸 콘솔값: hello");
+	obj.set_text("안녕"); // 속성에 값을 수정하는 방법 
+	this.alert(this.Button00.text);
+};
+
+]]></Script>
+  </Form>
+</FDL>
