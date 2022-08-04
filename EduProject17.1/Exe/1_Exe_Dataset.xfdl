@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Exe_Dataset" width="800" height="600" titletext="Exe_Dataset">
+  <Form id="Exe_Dataset" width="800" height="600" titletext="Exe_Dataset" onbeforeclose="Exe_Dataset_onbeforeclose">
     <Layouts>
-      <Layout height="600" width="800" stepcount="3">
+      <Layout height="600" width="800" stepcount="3" stepindex="2">
         <Grid id="Grid1" taborder="1" left="10" top="64" height="171" binddataset="Dataset1" right="10" autofittype="col">
           <Formats>
             <Format id="default">
@@ -169,6 +169,7 @@
         <Static id="Static28" taborder="57" text="데이터를 변경하는 스크립트를 작성 후 실행하여 이벤트 발생 순서 확인. " left="56" top="285" width="404" height="25" positionstep="2"/>
         <Static id="Static29" taborder="58" text="데이터 변경시 이벤트 발생 멈추기 " left="56" top="320" width="344" height="24" positionstep="2"/>
         <Button id="Button00" taborder="59" text="Button00" left="672" top="442" width="51" height="28" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="60" text="Button01" left="683" top="396" width="76" height="50" positionstep="1" onclick="Button01_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -419,7 +420,7 @@ this.btn_Exe1_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		var objCol = this.Dataset1.getColumnInfo(i);
 		trace(objCol.id + " : " + objCol.type + " : " + objCol.size);
 	}
-
+	
 	trace("------------")
 	var n = this.Dataset1.getColCount();
 	var m = this.Dataset1.getRowCount();
@@ -431,7 +432,7 @@ this.btn_Exe1_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		var objC = this.Dataset1.getColumnInfo(i);
 		trace("컬럼명: " + JSON.stringify(objC.id));
 	}
-
+	
 };
 
 // Exe 1-2
@@ -446,7 +447,7 @@ this.btn_Exe2_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	var nRow = this.Dataset1.findRow("EMPL_ID", "KR120");
 	var sVal = this.Dataset1.getColumn(nRow, "FULL_NAME");
-
+	
     trace(sVal);	
 	this.txtRtn1.set_value(sVal);	
 	
@@ -569,7 +570,7 @@ this.btn_Exe3_Filter_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventI
 	var sText = "e";
 	// this.Dataset1.filter("FULL_NAME.toUpperCase().indexOf('" + sText.toUpperCase() + "') >= 0");
 	this.Dataset1.filter("String(FULL_NAME).toUpperCase().indexOf('" + nexacro.replaceAll(sText, "'", "\\'").toUpperCase() + "') >= 0");
-
+	
 };
 
 
@@ -614,7 +615,7 @@ this.btn_Exe4_4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	//     this.Dataset4.deleteRow(i);
 	// }
 	// this.Dataset4.set_enableevent(true);
-
+	
 };
 
 // Exe 4-5
@@ -625,8 +626,8 @@ this.btn_Exe4_5_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	trace("Del Count=" + nDelCnt + " Del Data=" + sDelData);	
 	this.txtRtn2.set_value("Del Count=" + nDelCnt + " Del Data=" + sDelData);	
 	
-// 	var arrDel = this.Dataset4.getDeletedRowset();
-// 	trace(arrDel[0]);
+	// 	var arrDel = this.Dataset4.getDeletedRowset();
+	// 	trace(arrDel[0]);
 	
 	
 };
@@ -635,8 +636,24 @@ this.btn_Exe4_5_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 // Exe4 - Data Check
 this.btn_Exe4_Check_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-
+	this.fn_checkdata(this.Dataset4);
 };
+
+this.fn_checkdata = function(objDs) {
+	if(objDs.getDeletedRowCount() > 0 ){
+		//alert("삭제");
+		return true;
+	}
+	
+	for(var i=0; i<objDs.rowcount; i++) {
+		var nRowType = objDs.getRowType(i);
+		if(nRowType == 2 || nRowType == 4) {
+			//alert("신규/ 변경");
+			return true;
+		}
+	}
+	return false;
+}
 
 // Exercise 5 ================================================================
 // Exe 5-1
@@ -674,7 +691,12 @@ this.btn_Exe5_4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 // Exercise 6 ================================================================
 this.Dataset6_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
 {
-	trace("cancolumnchange");
+// 	var nCnt = obj.findRowExpr("FULL_NAME == '" + e.newvalue + "' && currow != " + e.row);
+// 	if(nCnt >= 0) {
+// 		this.alert("Data Duplication");
+// 		return false;
+// 	}
+	 trace("cancolumnchange");
 };
 
 this.Dataset6_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
@@ -691,12 +713,31 @@ this.btn_Exe6_3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 // Exe 6-5
 this.btn_Exe6_5_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.Dataset6.setColumn(1, "FULL_NAME", "Modify2");
+	this.Dataset6.set_enableevent(false);
+	for(var i=0; i<10; i++) {
+		this.Dataset6.setColumn(i, "FULL_NAME", "Modify2");
+	}
+	this.Dataset6.set_enableevent(true);
+	
 };
 
 this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.Dataset1.set_keystring("S:+HIRE_DATE");	
+};
+
+this.Exe_Dataset_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	if(this.fn_checkdata(this.Dataset4)) {
+		return "변경된 데이터가 존재합니다. 닫으시겠습니까?";
+	}
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	for(var i=0; i<this.Dataset5.getRowCount(); i++); {
+		trace(this.Dataset5.getRowType(i));
+	}
 };
 ]]></Script>
   </Form>
