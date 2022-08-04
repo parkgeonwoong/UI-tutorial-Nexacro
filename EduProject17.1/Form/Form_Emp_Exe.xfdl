@@ -259,6 +259,8 @@ this.fn_name = function(arg) {
 	return arg + ' pos'
 }
 
+trace("안녕하세요");
+
 // 조회 버튼
 this.btn_retrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
