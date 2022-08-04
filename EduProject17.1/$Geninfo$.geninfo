@@ -22,9 +22,11 @@
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\Grid.json" checksum="20220509100956" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\DeviceAPI.json" checksum="20220509100954" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\ListView.json" checksum="20220509100958" errormsg=""/>
-      <File url="Form\Form_Emp_Exe.xfdl" checksum="20220804090457" errormsg=""/>
+      <File url="Form\Form_Emp_Exe.xfdl" checksum="20220804100027" errormsg=""/>
       <File url="Application_Desktop.xadl" checksum="20200420105550" errormsg=""/>
       <File url="Application_Phone.xadl" checksum="20200420105550" errormsg=""/>
+      <File url="Base\resize01.xfdl" checksum="20220804100524" errormsg=""/>
+      <File url="Smpl\ArrangeFit.xfdl" checksum="20200420105602" errormsg=""/>
     </Info>
   </GenInfo>
 </root>

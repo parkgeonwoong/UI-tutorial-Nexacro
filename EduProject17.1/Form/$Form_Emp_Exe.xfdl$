@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Emp_exe" left="0" top="0" width="800" height="600" titletext="New Form">
+  <Form id="Form_Emp_exe" left="0" top="0" width="800" height="600" titletext="New Form" onload="Form_Emp_exe_onload">
     <Layouts>
       <Layout height="600" width="800">
         <Static id="st_title" taborder="0" text="Employees" left="10" top="5" width="193" height="30" right="" bottom="" cssclass="sta_WF_emptitle"/>
-        <Button id="btn_retrieve" taborder="1" text="Retrieve" top="5" width="65" height="30" right="205"/>
-        <Button id="btn_add" taborder="2" text="Add" top="5" width="60" height="30" left="600"/>
-        <Button id="btn_del" taborder="3" text="Delete" top="5" width="60" height="30" left="665"/>
-        <Button id="btn_save" taborder="4" text="Save" top="5" width="60" height="30" left="730"/>
+        <Button id="btn_retrieve" taborder="1" text="Retrieve" top="5" width="65" height="30" right="205" onclick="btn_retrieve_onclick"/>
+        <Button id="btn_add" taborder="2" text="Add" top="5" width="60" height="30" left="600" onclick="btn_add_onclick"/>
+        <Button id="btn_del" taborder="3" text="Delete" top="5" width="60" height="30" left="665" onclick="btn_del_onclick"/>
+        <Button id="btn_save" taborder="4" text="Save" top="5" width="60" height="30" left="730" onclick="btn_save_onclick"/>
         <Div id="div_detail" taborder="5" text="Div00" top="95" width="380" height="495" left="410">
           <Layouts>
             <Layout>
@@ -182,126 +182,18 @@
           <Column id="MARRIED" type="STRING" size="10"/>
           <Column id="MEMO" type="STRING" size="10"/>
         </ColumnInfo>
-        <Rows>
-          <Row>
-            <Col id="FULL_NAME">Olivia</Col>
-            <Col id="POS_CD">03</Col>
-            <Col id="HIRE_DATE">20101003</Col>
-            <Col id="SALARY">83000</Col>
-            <Col id="GENDER">W</Col>
-            <Col id="MARRIED">true</Col>
-            <Col id="MEMO">ivory</Col>
-            <Col id="DEPT_CD">01</Col>
-            <Col id="EMPL_ID">AA001</Col>
-          </Row>
-          <Row>
-            <Col id="FULL_NAME">John</Col>
-            <Col id="POS_CD">04</Col>
-            <Col id="HIRE_DATE">20051011</Col>
-            <Col id="SALARY">76000</Col>
-            <Col id="GENDER">M</Col>
-            <Col id="MARRIED">false</Col>
-            <Col id="MEMO">greenyellow</Col>
-            <Col id="DEPT_CD">02</Col>
-            <Col id="EMPL_ID">AA002</Col>
-          </Row>
-          <Row>
-            <Col id="FULL_NAME">Jackson</Col>
-            <Col id="POS_CD">03</Col>
-            <Col id="HIRE_DATE">20070206</Col>
-            <Col id="SALARY">95000</Col>
-            <Col id="GENDER">M</Col>
-            <Col id="MARRIED">true</Col>
-            <Col id="MEMO">aliceblue</Col>
-            <Col id="DEPT_CD">03</Col>
-            <Col id="EMPL_ID">BB001</Col>
-          </Row>
-          <Row>
-            <Col id="FULL_NAME">Maia</Col>
-            <Col id="POS_CD">02</Col>
-            <Col id="HIRE_DATE">20090512</Col>
-            <Col id="SALARY">60000</Col>
-            <Col id="GENDER">W</Col>
-            <Col id="MARRIED">false</Col>
-            <Col id="MEMO">ivory</Col>
-            <Col id="DEPT_CD">04</Col>
-            <Col id="EMPL_ID">BB002</Col>
-          </Row>
-          <Row>
-            <Col id="FULL_NAME">Adam</Col>
-            <Col id="POS_CD">04</Col>
-            <Col id="HIRE_DATE">20010109</Col>
-            <Col id="SALARY">88000</Col>
-            <Col id="GENDER">M</Col>
-            <Col id="MARRIED">true</Col>
-            <Col id="MEMO">greenyellow</Col>
-            <Col id="DEPT_CD">01</Col>
-            <Col id="EMPL_ID">CC001</Col>
-          </Row>
-          <Row>
-            <Col id="FULL_NAME">Ray</Col>
-            <Col id="POS_CD">03</Col>
-            <Col id="HIRE_DATE">20160202</Col>
-            <Col id="SALARY">60000</Col>
-            <Col id="GENDER">M</Col>
-            <Col id="MARRIED">true</Col>
-            <Col id="MEMO">lightpink</Col>
-            <Col id="DEPT_CD">02</Col>
-            <Col id="EMPL_ID">DD001</Col>
-          </Row>
-        </Rows>
       </Dataset>
       <Dataset id="ds_pos">
         <ColumnInfo>
           <Column id="POS_CD" type="string" size="32"/>
           <Column id="POS_NAME" type="string" size="32"/>
         </ColumnInfo>
-        <Rows>
-          <Row>
-            <Col id="POS_CD">04</Col>
-            <Col id="POS_NAME">Officer</Col>
-          </Row>
-          <Row>
-            <Col id="POS_CD">03</Col>
-            <Col id="POS_NAME">Assistant Manager</Col>
-          </Row>
-          <Row>
-            <Col id="POS_CD">02</Col>
-            <Col id="POS_NAME">Division Manager</Col>
-          </Row>
-          <Row>
-            <Col id="POS_CD">01</Col>
-            <Col id="POS_NAME">Chairman</Col>
-          </Row>
-        </Rows>
       </Dataset>
       <Dataset id="ds_dept">
         <ColumnInfo>
           <Column id="DEPT_CD" type="STRING" size="32"/>
           <Column id="DEPT_NAME" type="STRING" size="32"/>
         </ColumnInfo>
-        <Rows>
-          <Row>
-            <Col id="DEPT_CD">01</Col>
-            <Col id="DEPT_NAME">Accounting Team</Col>
-          </Row>
-          <Row>
-            <Col id="DEPT_CD">02</Col>
-            <Col id="DEPT_NAME">HR Team</Col>
-          </Row>
-          <Row>
-            <Col id="DEPT_CD">03</Col>
-            <Col id="DEPT_NAME">Sales Team</Col>
-          </Row>
-          <Row>
-            <Col id="DEPT_CD">04</Col>
-            <Col id="DEPT_NAME">Design Team</Col>
-          </Row>
-          <Row>
-            <Col id="DEPT_CD">05</Col>
-            <Col id="DEPT_NAME">Education Team</Col>
-          </Row>
-        </Rows>
       </Dataset>
       <Dataset id="Dataset00">
         <ColumnInfo>
@@ -366,6 +258,66 @@ this.var2 = '123';
 this.fn_name = function(arg) {
 	return arg + ' pos'
 }
+
+// 조회 버튼
+this.btn_retrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.transaction( 
+		"strSelect", // 서비스 id
+		"SvcURL::select_emp.jsp?arg=1&arg2=2", // 서비스 url
+		"", // 저장
+		"ds_emp = out_emp", // 조회client ds = server ds
+		"arg=1 arg2=" + nexacro.wrapQuote("2, 3"), // 조회 조건
+		"fn_call"); // 문장의 끝 function
+	
+};
+
+this.fn_call = function(svcid, ecd, emsg) {
+	if (ecd >= 0 ) {
+		if (svcid == "strSelect") {
+			this.alert(this.ds_emp.getRowCount() + "건 조회");
+		} else if(svcid == "strSave") {
+			this.alert("저장성공");
+		}
+	} else {
+		alert("Error" + ecd + ":" + emsg);
+	}
+}
+
+// 추가 버튼
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_emp.addRow();
+	this.ds_emp.setColumn(this.ds_emp.rowposition, "GENDER", "W");
+};
+
+// 삭제 버튼
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_emp.deleteRow(this.ds_emp.rowposition);
+};
+
+// 저장 버튼
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.transaction(
+		"strSave", // 서비스 id
+		"SvcURL::save_emp.jsp", // 서비스 url
+		"in_emp=ds_emp:U", // 저장 server ds = client ds
+		"arg=1 arg2=" + nexacro.wrapQuote("2, 3"), // 조회 조건
+		"fn_call"); // 문장의 끝 function
+};
+
+this.Form_Emp_exe_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.transaction(
+			"strCode", // 서비스 id
+			"SvcURL::select_code.jsp?arg=1&arg2=2", // 서비스 url
+			"", // 저장
+			"ds_dept=out_dept ds_pos=out_pos", // 조회client ds = server ds
+			"arg=1 arg2=" + nexacro.wrapQuote("2, 3"), // 조회 조건
+			"fn_call"); // 문장의 끝 function
+};
 ]]></Script>
     <Bind>
       <BindItem id="item0" compid="div_detail.form.edt_name" propid="value" datasetid="ds_emp" columnid="FULL_NAME"/>
