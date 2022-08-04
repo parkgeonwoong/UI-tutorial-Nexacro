@@ -99,6 +99,7 @@
                 <Column size="48"/>
                 <Column size="48"/>
                 <Column size="48"/>
+                <Column size="48"/>
                 <Column size="139"/>
                 <Column size="80"/>
                 <Column size="80"/>
@@ -119,46 +120,49 @@
                 <Cell text="No."/>
                 <Cell col="1" text="var1"/>
                 <Cell col="2" text="var2"/>
-                <Cell col="3" text="사원정보"/>
-                <Cell col="4" text="사번"/>
-                <Cell col="5" text="성명"/>
-                <Cell col="6" text="부서"/>
-                <Cell col="7" text="직위"/>
-                <Cell col="8" text="입사날짜"/>
-                <Cell col="9" text="급여"/>
-                <Cell col="10" text="성별"/>
-                <Cell col="11" text="결혼 여부"/>
-                <Cell col="12" text="MEMO"/>
+                <Cell col="3" text="fn"/>
+                <Cell col="4" text="사원정보"/>
+                <Cell col="5" text="사번"/>
+                <Cell col="6" text="성명"/>
+                <Cell col="7" text="부서"/>
+                <Cell col="8" text="직위"/>
+                <Cell col="9" text="입사날짜"/>
+                <Cell col="10" text="급여"/>
+                <Cell col="11" text="성별"/>
+                <Cell col="12" text="결혼 여부"/>
+                <Cell col="13" text="MEMO"/>
               </Band>
               <Band id="body">
                 <Cell text="expr:currow + 1" textAlign="center"/>
                 <Cell col="1" text="expr:comp.parent.var1"/>
                 <Cell col="2" text="expr:comp.parent.var2"/>
-                <Cell col="3" text="expr:EMPL_ID + &quot;-&quot; + FULL_NAME" textAlign="center"/>
-                <Cell col="4" text="bind:EMPL_ID" displaytype="mask" edittype="mask" maskedittype="string" maskeditformat="AA-###" textAlign="center"/>
-                <Cell col="5" text="bind:FULL_NAME"/>
-                <Cell col="6" text="bind:DEPT_CD" displaytype="combotext" edittype="combo" combodataset="ds_dept" combocodecol="DEPT_CD" combodatacol="DEPT_NAME"/>
-                <Cell col="7" text="bind:POS_CD" displaytype="combocontrol" edittype="combo" combodataset="ds_pos" combocodecol="POS_CD" combodatacol="POS_NAME"/>
-                <Cell col="8" text="bind:HIRE_DATE"/>
-                <Cell col="9" text="bind:SALARY"/>
-                <Cell col="10" text="expr:GENDER == &quot;M&quot; ? &quot;남자&quot; : &quot;여자&quot;"/>
-                <Cell col="11" text="bind:MARRIED" displaytype="checkboxcontrol" edittype="checkbox"/>
-                <Cell col="12" text="bind:MEMO"/>
+                <Cell col="3" text="expr:comp.parent.fn_name(currow + 1)"/>
+                <Cell col="4" text="expr:EMPL_ID + &quot;-&quot; + FULL_NAME" textAlign="center"/>
+                <Cell col="5" text="bind:EMPL_ID" displaytype="mask" edittype="mask" maskedittype="string" maskeditformat="AA-###" textAlign="center"/>
+                <Cell col="6" text="bind:FULL_NAME"/>
+                <Cell col="7" text="bind:DEPT_CD" displaytype="combotext" edittype="combo" combodataset="ds_dept" combocodecol="DEPT_CD" combodatacol="DEPT_NAME"/>
+                <Cell col="8" text="bind:POS_CD" displaytype="combocontrol" edittype="combo" combodataset="ds_pos" combocodecol="POS_CD" combodatacol="POS_NAME"/>
+                <Cell col="9" text="bind:HIRE_DATE"/>
+                <Cell col="10" text="bind:SALARY"/>
+                <Cell col="11" text="expr:GENDER == &quot;M&quot; ? &quot;남자&quot; : &quot;여자&quot;"/>
+                <Cell col="12" text="bind:MARRIED" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="13" text="bind:MEMO"/>
               </Band>
               <Band id="summary">
                 <Cell text="expr:dataset.getRowCount() + ' 건'"/>
                 <Cell col="1"/>
                 <Cell col="2"/>
                 <Cell col="3"/>
-                <Cell col="4" text="expr:comp.parent.ds_emp.getRowCount() + ' 건'"/>
-                <Cell col="5"/>
+                <Cell col="4"/>
+                <Cell col="5" text="expr:comp.parent.ds_emp.getRowCount() + ' 건'"/>
                 <Cell col="6"/>
                 <Cell col="7"/>
                 <Cell col="8"/>
-                <Cell col="9" text="expr:dataset.getSum(&quot;SALARY&quot;)" displaytype="number" textAlign="right"/>
-                <Cell col="10"/>
+                <Cell col="9"/>
+                <Cell col="10" text="expr:dataset.getSum(&quot;SALARY&quot;)" displaytype="number" textAlign="right"/>
                 <Cell col="11"/>
                 <Cell col="12"/>
+                <Cell col="13"/>
               </Band>
             </Format>
           </Formats>
@@ -359,7 +363,9 @@ this.var2 = '123';
 
 
 // 함수 접근
-
+this.fn_name = function(arg) {
+	return arg + ' pos'
+}
 ]]></Script>
     <Bind>
       <BindItem id="item0" compid="div_detail.form.edt_name" propid="value" datasetid="ds_emp" columnid="FULL_NAME"/>
