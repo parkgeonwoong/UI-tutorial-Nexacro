@@ -2,7 +2,7 @@
 <FDL version="2.1">
   <Form id="Exe_Grid" width="800" height="600" titletext="Exe_Grid">
     <Layouts>
-      <Layout height="600" width="800" stepcount="4" stepindex="1">
+      <Layout height="600" width="800" stepcount="4" stepindex="0">
         <Static id="Static07" taborder="0" text="☞ Exe 1 - Grid1" left="10" top="40" width="250" height="24" cssclass="sta_WF_label"/>
         <Grid id="Grid1" taborder="1" left="10" top="64" height="193" binddataset="Dataset1" width="474" autofittype="col" oncellclick="Grid_oncellclick" onheadclick="Grid1_onheadclick">
           <Formats>
@@ -56,7 +56,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Grid id="Grid3" taborder="2" top="61" width="780" height="230" binddataset="Dataset3" left="10" positionstep="1" oncelldblclick="Grid3_oncelldblclick" cellmovingtype="col" cellsizingtype="col">
+        <Grid id="Grid3" taborder="2" top="61" width="780" height="230" binddataset="Dataset3" left="10" positionstep="1" oncelldblclick="Grid3_oncelldblclick" cellmovingtype="col" cellsizingtype="col" formatid="default">
           <Formats>
             <Format id="default">
               <Columns>
@@ -101,6 +101,48 @@
                 <Cell col="8" text="bind:MARRIED"/>
                 <Cell col="9" text="bind:PHONE_NO"/>
                 <Cell col="10" text="bind:E_MAIL"/>
+              </Band>
+            </Format>
+            <Format id="default_00">
+              <Columns>
+                <Column size="32"/>
+                <Column size="139"/>
+                <Column size="99"/>
+                <Column size="143"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="120"/>
+                <Column size="192"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1" text="Dept"/>
+                <Cell col="2" text="ID"/>
+                <Cell col="3" text="Date"/>
+                <Cell col="4" text="Salary"/>
+                <Cell col="5" text="Bonus"/>
+                <Cell col="6" text="Gender"/>
+                <Cell col="7" text="Married"/>
+                <Cell col="8" text="Phone No"/>
+                <Cell col="9" text="E-Mail"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" text="bind:DEPT_CODE" displaytype="combotext" combodataset="ds_dept" combocodecol="DEPT_CODE" combodatacol="DEPT_NAME"/>
+                <Cell col="2" text="bind:EMPL_ID"/>
+                <Cell col="3" text="bind:HIRE_DATE"/>
+                <Cell col="4" text="bind:SALARY"/>
+                <Cell col="5" text="bind:BONUS"/>
+                <Cell col="6" text="bind:GENDER"/>
+                <Cell col="7" text="bind:MARRIED"/>
+                <Cell col="8" text="bind:PHONE_NO"/>
+                <Cell col="9" text="bind:E_MAIL"/>
               </Band>
             </Format>
           </Formats>
@@ -161,7 +203,7 @@
         <Button id="btn_Exe1_1" taborder="5" text="1_1" left="10" top="267" width="36" height="25" onclick="btn_Exe1_1_onclick"/>
         <Button id="btn_Exe1_3" taborder="6" text="1_3" left="10" top="302" width="36" height="25" onclick="btn_Exe1_3_onclick"/>
         <Static id="Static02" taborder="7" text="☞ Exe 2 - Grid2" left="10" top="340" width="250" height="24" cssclass="sta_WF_label"/>
-        <Grid id="Grid2" taborder="8" left="10" top="364" height="146" binddataset="Dataset2" width="780" onheadclick="Grid2_onheadclick">
+        <Grid id="Grid2" taborder="8" left="10" top="364" height="146" binddataset="Dataset2" width="780" onheadclick="Grid2_onheadclick" autofittype="col" fastvscrolltype="centerdisplay" autoenter="select">
           <Formats>
             <Format id="default">
               <Columns>
@@ -184,7 +226,7 @@
               </Band>
               <Band id="body">
                 <Cell text="bind:EMPL_ID" displaytype="mask" edittype="mask" maskeditformat="AA-###" maskedittype="string"/>
-                <Cell col="1" text="bind:FULL_NAME"/>
+                <Cell col="1" text="bind:FULL_NAME" edittype="normal"/>
                 <Cell col="2" text="bind:DEPT_CODE" displaytype="combotext" edittype="combo" combodataset="ds_dept" combocodecol="DEPT_CODE" combodatacol="DEPT_NAME"/>
                 <Cell col="3" text="bind:HIRE_DATE" edittype="date" displaytype="date"/>
                 <Cell col="4" text="bind:MARRIED" displaytype="checkboxcontrol" edittype="checkbox"/>
@@ -234,7 +276,7 @@
           </Formats>
         </Grid>
         <Static id="Static00" taborder="20" text="☞ Exe 4 - Grid4" left="10" top="40" width="250" height="24" cssclass="sta_WF_label" positionstep="2"/>
-        <Grid id="Grid4" taborder="21" top="61" binddataset="Dataset4" left="10" positionstep="2" right="10" bottom="250" autofittype="col" oncelldblclick="Grid4_oncellclick">
+        <Grid id="Grid4" taborder="21" top="61" binddataset="Dataset4" left="10" positionstep="2" right="10" bottom="250" autofittype="col" oncelldblclick="Grid4_oncellclick" treeinitstatus="" treeusecheckbox="false">
           <Formats>
             <Format id="default">
               <Columns>
@@ -256,7 +298,7 @@
                 <Cell col="4" text="E_MAIL"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:ORG_NAME"/>
+                <Cell text="bind:ORG_NAME" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:LEVEL"/>
                 <Cell col="1" text="bind:POSITION"/>
                 <Cell col="2" text="bind:GENDER"/>
                 <Cell col="3" text="bind:PHONE_NO"/>
@@ -319,6 +361,7 @@
         <Static id="Static18" taborder="37" text="법인(CORP), 부서(DEPT)별 소계 표현하기." left="54" top="470" width="346" height="28" onclick="Static08_onclick" positionstep="3"/>
         <Static id="Static19" taborder="38" text="Summary 밴드 추가하고 SALARY 컬럼 총 합계 표현. " left="54" top="510" width="347" height="28" onclick="Static08_onclick" positionstep="3"/>
         <Static id="Static20" taborder="39" text="소계와 Summary 밴드를 상단에 표현하기." left="54" top="550" width="348" height="28" onclick="Static08_onclick" positionstep="3"/>
+        <Edit id="Edit00" taborder="40" left="436" top="549" width="127" height="39" oninput="Edit00_oninput"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -522,6 +565,276 @@
             <Col id="HIRE_DATE">20161120</Col>
             <Col id="SALARY">6000</Col>
             <Col id="GENDER">W</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John </Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="HIRE_DATE">20120304</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="EMPL_ID">KR020</Col>
+            <Col id="HIRE_DATE">20160602</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="EMPL_ID">KR030</Col>
+            <Col id="HIRE_DATE">20030805</Col>
+            <Col id="SALARY">3000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Melon</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="HIRE_DATE">20071001</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kein </Col>
+            <Col id="EMPL_ID">KR110</Col>
+            <Col id="HIRE_DATE">20180201</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John </Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="HIRE_DATE">20120304</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="EMPL_ID">KR020</Col>
+            <Col id="HIRE_DATE">20160602</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="EMPL_ID">KR030</Col>
+            <Col id="HIRE_DATE">20030805</Col>
+            <Col id="SALARY">3000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Melon</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="HIRE_DATE">20071001</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kein </Col>
+            <Col id="EMPL_ID">KR110</Col>
+            <Col id="HIRE_DATE">20180201</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John </Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="HIRE_DATE">20120304</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="EMPL_ID">KR020</Col>
+            <Col id="HIRE_DATE">20160602</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="EMPL_ID">KR030</Col>
+            <Col id="HIRE_DATE">20030805</Col>
+            <Col id="SALARY">3000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Melon</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="HIRE_DATE">20071001</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kein </Col>
+            <Col id="EMPL_ID">KR110</Col>
+            <Col id="HIRE_DATE">20180201</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John </Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="HIRE_DATE">20120304</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="EMPL_ID">KR020</Col>
+            <Col id="HIRE_DATE">20160602</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="EMPL_ID">KR030</Col>
+            <Col id="HIRE_DATE">20030805</Col>
+            <Col id="SALARY">3000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Melon</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="HIRE_DATE">20071001</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kein </Col>
+            <Col id="EMPL_ID">KR110</Col>
+            <Col id="HIRE_DATE">20180201</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John </Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="HIRE_DATE">20120304</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="EMPL_ID">KR020</Col>
+            <Col id="HIRE_DATE">20160602</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="EMPL_ID">KR030</Col>
+            <Col id="HIRE_DATE">20030805</Col>
+            <Col id="SALARY">3000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Melon</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="HIRE_DATE">20071001</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kein </Col>
+            <Col id="EMPL_ID">KR110</Col>
+            <Col id="HIRE_DATE">20180201</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">John </Col>
+            <Col id="EMPL_ID">KR010</Col>
+            <Col id="HIRE_DATE">20120304</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Jackson</Col>
+            <Col id="EMPL_ID">KR020</Col>
+            <Col id="HIRE_DATE">20160602</Col>
+            <Col id="SALARY">6000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">1</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Adam</Col>
+            <Col id="EMPL_ID">KR030</Col>
+            <Col id="HIRE_DATE">20030805</Col>
+            <Col id="SALARY">3000</Col>
+            <Col id="GENDER">M</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K10</Col>
+            <Col id="FULL_NAME">Melon</Col>
+            <Col id="EMPL_ID">KR040</Col>
+            <Col id="HIRE_DATE">20071001</Col>
+            <Col id="SALARY">9000</Col>
+            <Col id="GENDER">W</Col>
+            <Col id="MARRIED">0</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CODE">K20</Col>
+            <Col id="FULL_NAME">Kein </Col>
+            <Col id="EMPL_ID">KR110</Col>
+            <Col id="HIRE_DATE">20180201</Col>
+            <Col id="SALARY">1000</Col>
+            <Col id="GENDER">M</Col>
             <Col id="MARRIED">1</Col>
           </Row>
         </Rows>
@@ -1601,6 +1914,7 @@ this.btn_Exe5_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	this.Grid5.setCellProperty("body", 0, "text", sExpr);
 	sExpr = "expr:(dataset.getRowLevel(currow) == 0 ? DEPT : (dataset.getRowLevel(currow) == 1 ? DEPT + ' Sum' : ''))";
 	this.Grid5.setCellProperty("body", 1, "text", sExpr);
+	
 };
 
 // Exe 5-2
@@ -1615,6 +1929,7 @@ this.btn_Exe5_3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.Dataset5.set_reversesubsum(true);
 	this.Grid5.set_summarytype("top");
+	
 };
 
 // Exe 6-1
@@ -1695,6 +2010,16 @@ this.fn_sort = function (obj:Grid, e:GridClickEventInfo)
 // 	obj.updateToDataset();
 // };
 
+
+
+
+this.Edit00_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+	obj.updateToDataset();
+};
 ]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Edit00" propid="value" datasetid="Dataset2" columnid="FULL_NAME"/>
+    </Bind>
   </Form>
 </FDL>
