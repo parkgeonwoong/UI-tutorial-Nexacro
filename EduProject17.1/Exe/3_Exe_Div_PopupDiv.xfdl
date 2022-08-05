@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <Form id="Exe_Div_PopupDiv" width="800" height="580" titletext="Exe_Div_PopupDiv" onload="Exe_Div_PopupDiv_onload">
     <Layouts>
       <Layout height="580" width="800" stepcount="0">
@@ -142,15 +142,22 @@
     <Script type="xscript5.1"><![CDATA[this.btn_Exe1_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
  	var nX = 0;	
- 	var nY = 0;
+ 	var nY = obj.height;
 	this.PopupDiv1.trackPopupByComponent(this.btn_Exe1_1, nX, nY);	
+	
+	// 	const x = 0
+	// 	const y = 0
+	// 	this.PopupDiv1.trackPopupByComponent(this.btn_Exe1_1, x, y);
 };
 
 this.PopupDiv1_btn_Exe1_Close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-    var sDept = this.Dataset1.getColumn(this.Dataset1.rowposition, "DEPT_NAME");
-	var sName = this.Dataset1.getColumn(this.Dataset1.rowposition, "FULL_NAME");
-	var sID   = this.Dataset1.getColumn(this.Dataset1.rowposition, "EMPL_ID");
+	
+	trace(this.Dataset1.getColumn(this.Dataset1.rowposition, "FULL_NAME"));
+	
+    const sDept = this.Dataset1.getColumn(this.Dataset1.rowposition, "DEPT_NAME");
+	const sName = this.Dataset1.getColumn(this.Dataset1.rowposition, "FULL_NAME");
+	const sID   = this.Dataset1.getColumn(this.Dataset1.rowposition, "EMPL_ID");
 	
  	this.edt_dept.set_value(sDept);
  	this.edt_name.set_value(sName);
@@ -163,11 +170,11 @@ this.btn_Exe2_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	var nX = parseInt(0);	
 	var nY = parseInt(obj.height);
 	this.PopupDiv2.trackPopupByComponent(obj
-	                                   , nX
-									   , nY
-									   , null
-									   , null
-									   , "fn_pDivCallback");	
+		, nX
+		, nY
+		, null
+		, null
+		, "fn_pDivCallback");	
 };
 
 this.fn_pDivCallback = function(objID, rtnValue)
@@ -188,22 +195,29 @@ this.Exe_Div_PopupDiv_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo
 {
 	var objDate = new Date();
 	var sToday = objDate.getFullYear()
-			   + ((objDate.getMonth() + 1) + "").padLeft(2, '0')
-			   + (objDate.getDate() + "").padLeft(2, '0');
-
+	+ ((objDate.getMonth() + 1) + "").padLeft(2, '0')
+	+ (objDate.getDate() + "").padLeft(2, '0');
+	
     this.cal_from.set_value(sToday.substring(0,6) + "01");
     this.cal_to.set_value(sToday);	
 };
 
 this.cal_from_ondropdown = function(obj:nexacro.Calendar,e:nexacro.EventInfo)
 {
-
+	this.PopupDiv3.form.cal_from.set_value(this.cal_from.value);
+	this.PopupDiv3.form.cal_to.set_value(this.cal_to.value);
+	this.PopupDiv3.trackPopupByComponent(this.cal_from, 0, obj.height);
 };
 
 // Confirm Button
 this.PopupDiv3_btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-
+	const sFrom = this.PopupDiv3.form.cal_from.value;
+	const sTo = this.PopupDiv3.form.cal_to.value;
+	
+	this.cal_from.set_value(sFrom);
+	this.cal_to.set_value(sTo);
+	this.PopupDiv3.closePopup();
 };
 
 this.PopupDiv3_btn_cancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

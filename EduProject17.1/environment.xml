@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ENV version="2.1">
-  <Environment themeid="theme::edu_theme_d" scrollbarsize="10" onload="Environment_onload" datatyperule="2.0" >
+  <Environment themeid="theme::edu_theme_d" scrollbarsize="10" onload="Environment_onload" datatyperule="2.0" userfontid="font::sampleTest.xfont">
     <ScreenDefinition>
       <Screen id="Phone_screen" type="mobile_small" themeid="theme::edu_theme_m" specifiedlocale="ar_AE"/>
       <Screen id="Desktop_screen" type="desktop" themeid="theme::edu_theme_d"/>

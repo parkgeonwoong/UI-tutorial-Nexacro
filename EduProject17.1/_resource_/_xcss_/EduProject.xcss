@@ -36,7 +36,7 @@
 	-nexa-border : 0px none , 0px none , 1px solid #cbcbcb , 0px none;
 	border-radius : 0px;
 }
-,.Grid.grd_MT_mnuPop .body .row .cell[userstatus=selected]
+.Grid.grd_MT_mnuPop .body .row .cell[userstatus=selected]
 {
 	-nexa-background-odd : #cbcbcb;
 	-nexa-color-odd : #546169;
@@ -48,4 +48,8 @@
 	background : #cbcbcb;
 	-nexa-border : 0px none , 0px none , 1px solid #cbcbcb , 0px none;
 	border-radius : 0px;
-}]]></XCSS>
+}.Button
+{
+		border-radius : 5px 5px 5px 5px;
+}
+]]></XCSS>
