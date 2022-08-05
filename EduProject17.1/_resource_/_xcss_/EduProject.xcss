@@ -50,6 +50,7 @@
 	border-radius : 0px;
 }.Button
 {
-		border-radius : 5px 5px 5px 5px;
+	border-radius : 5px 5px 5px 5px;
+	font : normal 10pt/normal "배달의민족 한나체 Air";
 }
 ]]></XCSS>

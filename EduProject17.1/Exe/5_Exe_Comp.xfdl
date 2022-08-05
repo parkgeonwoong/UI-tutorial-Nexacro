@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.0">
+<FDL version="2.1">
   <Form id="Exe_Comp" width="400" height="500" titletext="Exe_Comp">
     <Layouts>
       <Layout height="500" width="400" stepcount="0">
@@ -115,19 +115,28 @@ this.btn_Exe1_6_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 // Exe 2-1(Create Components on Form)
 this.btn_Exe2_1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var objBtn = new Button();
+// 	var objBtn = new Button();
+// 	objBtn.init("btn_Comp", 10, 250, 150, 50);
+// 	this.addChild("btn_Comp", objBtn);
+// 	/*objBtn.set_text("Created Button");*/
+// 	objBtn.show();	
+	
+	const objBtn = new Button();
 	objBtn.init("btn_Comp", 10, 250, 150, 50);
 	this.addChild("btn_Comp", objBtn);
-	/*objBtn.set_text("Created Button");*/
-	objBtn.show();	
+	objBtn.show();
 
 };
 
 // Exe 2-2(Destroy Components on Form)
 this.btn_Exe2_2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var objBtn = this.removeChild("btn_Comp"); 
-	objBtn.destroy(); 
+// 	var objBtn = this.removeChild("btn_Comp"); 
+// 	objBtn.destroy(); 
+// 	objBtn = null;
+
+	const objBtn = this.removeChild("btn_Comp");
+	objBtn.destory();
 	objBtn = null;
 
 };
